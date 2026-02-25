@@ -1,0 +1,252 @@
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade {
+  opacity: 0;
+  animation: fadeIn .8s ease forwards;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: 'Minecraft'; 
+    src: url('fonts/Minecraft.ttf');
+    font-weight: normal;
+    font-style: normal;    
+}
+@font-face {
+    font-family: 'MinecraftTen'; 
+    src: url('fonts/MinecraftTen.ttf');
+    font-weight: normal;
+    font-style: normal;    
+}
+
+body, 
+body * {
+    transition: background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #F5CAF5, #83E7FF);
+    background-attachment: fixed;           
+    background-size: cover;            
+    background-repeat: no-repeat;           
+    min-height: 100vh;                         
+    margin: 0;        
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body.dark {
+    background-image: linear-gradient(to bottom right, #3F3442, #1D3D48);
+    color: #c6c6c6;
+}
+
+button {
+    background-color: rgba(0,0,0,0.3);
+    min-height: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    border: none;
+    min-width: 60px;
+    min-height: 25px;
+    transition: border 0.1s ease, 
+    background-color 0.2s ease;
+    cursor: pointer;
+    font-family: 'Minecraft', sans-serif;
+    color: #000;
+}
+button:hover {
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid white;
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(0);
+}
+
+body.dark button {
+    color: #FFF;
+    background-color: rgba(255,255,255,0.1);
+}
+
+hr {
+    border: none;
+    background-color: #000;
+    height: 1px;
+    margin: 0 10px;
+}
+body.dark hr {
+    background-color: #FFF;
+}
+
+h1 {
+    margin-left: 10px;
+    font-family: MinecraftTen;
+    line-height: 0.5;
+    margin-top: 20px;
+}
+h3 {
+    line-height: 1;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    font-family: MinecraftTen;
+    font-weight: bold;
+}
+body.dark h1,
+body.dark h3,
+body.dark a {
+    color: #FFF;
+}
+
+p, a {
+    font-size: 12px;
+    text-decoration: none;
+}
+a {
+    color: #000;
+}
+
+/* 板块 */
+.box {
+    background-color: rgba(0,0,0,0.3);
+    min-height: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    margin: 10px;
+    padding: 15px;
+}
+
+body.dark .box {
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.footer-box {
+    background-color: rgba(0,0,0,0.2);
+    padding: 10px;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 10px;
+}
+
+/* 输入框样式 */
+.input-area, .output-area {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.5) rgba(0,0,0,0.5) rgba(255,255,255,0.4) rgba(255,255,255,0.4);
+    min-height: 25px;
+    transition: border 0.1s ease, background-color 0.2s ease;
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+body.dark .input-area,
+body.dark .output-area {
+    color: #FFF;
+    background-color: rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.2) rgba(255,255,255,0.2) rgba(255,255,255,0.3) rgba(255,255,255,0.3);
+}
+
+.input-area:focus, .output-area:focus {
+    background-color: rgba(0,0,0,0.3);
+    outline: unset;
+}
+
+body.dark .input-area:focus,
+body.dark .output-area:focus {
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* 箭头动画 */
+.arrow-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.arrow-icon {
+    font-size: 30px;
+    line-height: 1;
+    color: #000;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+body.dark .arrow-icon {
+    color: #FFF;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 按钮组 */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-group button {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* 提示文字 */
+.hint {
+    margin-top: 15px;
+    font-size: 11px;
+    color: rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+body.dark .hint {
+    color: rgba(255,255,255,0.5);
+}
+
+/* 主题切换按钮 */
+.theme-btn {
+    border-radius: 360px;
+    height: 50px;
+    min-width: 50px;
+    position: fixed; 
+    left: 80%; 
+    bottom: 20px;
+    font-size: 20px;
+    z-index: 100;
+}
+
+/* 左下角徽标 */
+.logo {
+    width: 40px;
+    position: fixed; 
+    left: 20px; 
+    bottom: 20px;
+    z-index: -2;
+    opacity: 0.4;
+}
+
+body.dark .logo, 
+body.dark .auto {
+    filter: brightness(0) invert(1);
+}
