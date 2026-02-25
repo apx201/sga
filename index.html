@@ -14,6 +14,9 @@
     <link rel="icon" type="image/ico" href="favicon.ico">
 </head>
 <body>
+    <!-- 顶部消息弹窗 -->
+    <div id="toast" class="toast">已复制到剪贴板！</div>
+    
     <h1>SGA字符转换器</h1>
     <hr>
     
@@ -25,8 +28,8 @@
             <span class="arrow-icon">⇅</span>
         </div>
         
-        <h3>↴ 输出字符</h3>
-        <textarea class="output-area" id="outputText" placeholder="转换结果将显示在这里..." readonly></textarea>
+        <h3>↴ 输出字符 <span class="copy-hint">(点击复制)</span></h3>
+        <textarea class="output-area" id="outputText" placeholder="转换结果将显示在这里..." readonly title="点击复制内容"></textarea>
         
         <div class="btn-group">
             <button onclick="convert()">转换为SGA</button>
@@ -34,7 +37,7 @@
             <button onclick="clearAll()">清空</button>
         </div>
         
-        <p class="hint">支持 A-Z, a-z 与标准银河字母(SGA)互相转换<br>备注：“P”标准银河字母“і!”左半部分使用U+0456西里尔文小写字母白俄罗斯（乌克兰语字母）而不是拉丁字母i，防止转换bug；转换后的T可能会出现在浏览器无法显示的问题</p>
+        <p class="hint">支持 A-Z, a-z 与标准银河字母(SGA)互相转换<br>备注："P"标准银河字母"і!"左半部分使用U+0456西里尔文小写字母白俄罗斯（乌克兰语字母）而不是拉丁字母i，防止转换bug；转换后的T可能会出现在浏览器无法显示的问题</p>
     </div>
     
     <div class="box">

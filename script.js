@@ -96,6 +96,7 @@ for (let key in charMap) {
 // 获取元素
 const inputEl = document.getElementById('inputText');
 const outputEl = document.getElementById('outputText');
+const toastEl = document.getElementById('toast');
 
 // 统一转换函数
 function transform(text, toSGA = true) {
@@ -186,4 +187,81 @@ outputEl.addEventListener('keydown', function(e) {
     if (!(e.ctrlKey && (e.key === 'c' || e.key === 'a'))) {
         e.preventDefault();
     }
+});
+
+/************************************
+ * 4. 点击复制功能
+ ************************************/
+
+// 显示消息弹窗
+function showToast(message, duration = 2000) {
+    toastEl.textContent = message;
+    toastEl.classList.add('show');
+    
+    // 清除之前的定时器（如果有）
+    if (toastEl.hideTimeout) {
+        clearTimeout(toastEl.hideTimeout);
+    }
+    
+    // 设置自动隐藏
+    toastEl.hideTimeout = setTimeout(() => {
+        toastEl.classList.remove('show');
+    }, duration);
+}
+
+// 复制文本到剪贴板
+async function copyToClipboard(text) {
+    if (!text) return false;
+    
+    try {
+        // 优先使用现代 Clipboard API
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            return true;
+        } else {
+            // 降级方案：使用传统的 execCommand
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            const successful = document.execCommand('copy');
+            document.body.removeChild(textArea);
+            return successful;
+        }
+    } catch (err) {
+        console.error('复制失败:', err);
+        return false;
+    }
+}
+
+// 输出框点击复制
+outputEl.addEventListener('click', async function() {
+    const text = this.value;
+    if (!text) {
+        showToast('没有可复制的内容', 1500);
+        return;
+    }
+    
+    const success = await copyToClipboard(text);
+    if (success) {
+        showToast('✓ 已复制到剪贴板！');
+        // 添加视觉反馈
+        this.style.backgroundColor = 'rgba(100, 200, 100, 0.2)';
+        setTimeout(() => {
+            this.style.backgroundColor = '';
+        }, 200);
+    } else {
+        showToast('复制失败，请手动复制', 2000);
+    }
+});
+
+// 双击全选（方便手动复制）
+outputEl.addEventListener('dblclick', function() {
+    this.select();
+    showToast('已全选，按 Ctrl+C 复制', 1500);
 });

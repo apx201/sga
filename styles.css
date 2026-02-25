@@ -146,7 +146,7 @@ body.dark .box {
     border-style: solid;
     border-color: rgba(0,0,0,0.5) rgba(0,0,0,0.5) rgba(255,255,255,0.4) rgba(255,255,255,0.4);
     min-height: 25px;
-    transition: border 0.1s ease, background-color 0.2s ease;
+    transition: border 0.1s ease, background-color 0.2s ease, transform 0.1s ease;
     width: 100%;
     height: 120px;
     padding: 12px;
@@ -172,6 +172,45 @@ body.dark .output-area {
 body.dark .input-area:focus,
 body.dark .output-area:focus {
     background-color: rgba(0,0,0,0.4);
+}
+
+/* 输出框特殊样式 - 可点击 */
+.output-area {
+    cursor: pointer;
+    position: relative;
+}
+
+.output-area:hover {
+    border-color: rgba(100, 200, 255, 0.6) rgba(100, 200, 255, 0.6) rgba(255,255,255,0.4) rgba(255,255,255,0.4);
+    background-color: rgba(0,0,0,0.25);
+}
+
+body.dark .output-area:hover {
+    border-color: rgba(100, 200, 255, 0.4) rgba(100, 200, 255, 0.4) rgba(255,255,255,0.3) rgba(255,255,255,0.3);
+    background-color: rgba(0,0,0,0.35);
+}
+
+.output-area:active {
+    transform: scale(0.995);
+}
+
+/* 复制提示文字 */
+.copy-hint {
+    font-size: 10px;
+    font-family: 'Minecraft', sans-serif;
+    font-weight: normal;
+    color: rgba(0,0,0,0.5);
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body.dark .copy-hint {
+    color: rgba(255,255,255,0.4);
+}
+
+h3:hover .copy-hint {
+    opacity: 1;
 }
 
 /* 箭头动画 */
@@ -234,6 +273,7 @@ body.dark .hint {
     bottom: 20px;
     font-size: 20px;
     z-index: 100;
+    backdrop-filter: blur(2px);
 }
 
 /* 左下角徽标 */
@@ -249,4 +289,36 @@ body.dark .hint {
 body.dark .logo, 
 body.dark .auto {
     filter: brightness(0) invert(1);
+}
+
+/* 顶部消息弹窗 */
+.toast {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Minecraft', sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);/* 模糊 */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.toast.show {
+    top: 20px;
+    opacity: 1;
+}
+
+body.dark .toast {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.2);
 }
